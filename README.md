@@ -1,1 +1,1 @@
-# React peronal project
+# React project
