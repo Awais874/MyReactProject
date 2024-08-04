@@ -1,4 +1,92 @@
-#heading{
+.header{
 
-    color: red;
+display: flex;
+justify-content: space-between;
+border: 1px solid black;
+   
+}
+.logo{
+
+    width: 160px;
+}
+.nav-items > ul{
+
+display: flex;
+font-size: 24px;
+list-style-type: none;
+
+}
+
+.nav-items > ul > li{
+
+margin: 10px;
+padding: 10px;
+margin-left: 35px;
+margin-right: 35px;
+
+}
+
+.res-card{
+
+width: 200px;
+
+margin: 4px;
+padding: 9px;
+
+}
+
+.filter-btn{
+
+margin: 5px;
+
+}
+
+.res-card:hover{
+
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.search{
+
+    padding: 10px;
+}
+
+.res-logo{
+
+width :100%;
+
+
+}
+.res-container{
+
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.shimmer-container {
+
+    display: flex;
+}
+
+.shim-cards{
+background-color: rgb(152, 130, 130);
+    width: 200px;
+    height: 400px;
+margin: 20px;
+
+}
+
+.Login{
+
+cursor: pointer;
+margin-right: 18px;
+
+
+}
+
+.filter{
+
+    display: flex;
 }
