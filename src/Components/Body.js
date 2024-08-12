@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 let CardsFile = [];
 
@@ -8,6 +9,7 @@ const Body = () => {
   const [ListOfRestaurants, setListOfRestaurant] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [SearchText, setSearchText] = useState("");
+  console.log("abccc", filteredRestaurant);
 
   useEffect(() => {
     fetchData();
@@ -37,7 +39,7 @@ const Body = () => {
           //     return <shimmer/>;
 
           // console.log(allrestaurant);
-          console.log("Body of json", CardsFile);
+
           setListOfRestaurant(CardsFile);
           setFilteredRestaurant(CardsFile);
         }
@@ -45,75 +47,67 @@ const Body = () => {
     } catch (e) {
       console.log(e.message);
     }
-
-    
-};
-    return ListOfRestaurants.length === 0 ? (
-      <Shimmer />
-  
-    ) : (
-      <div className="body">
-        <div className="filter">
-          <div className="search">
-            <input
-              type="text"
-              className="search-box"
-              value={SearchText}
-              onChange={(e) => {
-                setSearchText(e.target.value);
-              }}
-            />
-            <button
-              onClick={() => {
-                
-                const filteredRestaurant = ListOfRestaurants.filter((res) => {
-                return(
-                  res.info.name
-                    .toLowerCase()
-                    .includes(SearchText.toLowerCase())
-                );
-                   
-                });
-                console.log("abcd",filteredRestaurant);
-                // setFilteredRestaurant(filteredRestaurant);
-
-              
-                setFilteredRestaurant(filteredRestaurant);
-              }}
-            >
-              Search
-            </button>
-          </div>
-          <button
-            className="filter-btn"
-
-            
-            onClick={() => {
-              const filteredlist = ListOfRestaurants?.filter(
-                (res) => res?.info?.avgRating > 4
-              );
-              
-              setFilteredRestaurant(filteredlist);
-            }}
-
-
-
-
-          >
-            Top Rated Restaurants
-          </button>
-         {console.log("ye lo",ListOfRestaurants)}
-        </div>
-        <div className="res-container">
-          {filteredRestaurant.map((restaurants) => (
-            <RestaurantCard key = {restaurants.info.id} resData={restaurants} />
-          ))}
-        </div>
-      </div>
-    );
-  
-    
-    
   };
+  return ListOfRestaurants.length === 0 ? (
+    <Shimmer />
+  ) : (
+    <div className="body">
+      <div className="filter">
+        <div className="search">
+          <input
+            type="text"
+            className="search-box"
+            value={SearchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button
+            onClick={() => {
+              const filteredRestaurant = ListOfRestaurants.filter((res) => {
+                return res.info.name
+                  .toLowerCase()
+                  .includes(SearchText.toLowerCase());
+              });
+              console.log("abcd", filteredRestaurant);
+              // setFilteredRestaurant(filteredRestaurant);
+
+              setFilteredRestaurant(filteredRestaurant);
+            }}
+          >
+            Search
+          </button>
+        </div>
+        <button
+          className="filter-btn"
+          onClick={() => {
+            const filteredlist = ListOfRestaurants?.filter(
+              (res) => res?.info?.avgRating > 4
+            );
+
+            setFilteredRestaurant(filteredlist);
+          }}
+        >
+          Top Rated Restaurants
+        </button>
+      </div>
+
+      <div className="res-container">
+        {console.log("aaa", filteredRestaurant)}
+        {filteredRestaurant.map((restaurants) => (
+          <Link
+            key={restaurants.info?.id}
+            to={"/restaurants/" + restaurants.info?.id}
+          >
+           
+            <RestaurantCard key={restaurants?.info?.id} resData={restaurants} />
+          
+            </Link>
+
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default Body;

@@ -1,20 +1,35 @@
 import React from 'react'
 import { useState, useEffect } from "react";
 import Shimmer from './Shimmer';
-
+import { MENU_API } from '../utils/constant';
+import { useParams } from 'react-router-dom';
 
 const RestaurantMenu =() => {
   const [resInfo, setResInfo] = useState(null);
   const [error, setError] = useState(null);
 
+// const {resID}= useParams();
+const resID = useParams();
+
+
+
   useEffect(() => {
     const fetchMenu = async () => {
       try {
-        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&collection=80426&tags=layout_CCS_Dosa&sortBy=&filters=&type=rcv2&offset=0&page_type=null");
+        const data = await fetch(MENU_API+resID.resiD);
+        console.log("MENU_API+resID",MENU_API+resID.resiD);
         const json = await data.json();
-        console.log("json dekh lo bhai",json);
-        if (json?.data?.cards) {
-          const allrestaurants = json.data.cards.map(card => card.card.card);
+       
+       
+        // https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.48490&lng=39.19200&restaurantId=498382&catalog_qa=undefined&submitAction=ENTER
+        if 
+        
+        (json?.data?.cards) {
+
+            const restaurantsObject = json;
+            console.log("bigObject",restaurantsObject);
+          const allrestaurants = json.data.cards.map(card => card?.card?.card);
+          console.log("allrestaurants menu object", allrestaurants);
           setResInfo(allrestaurants);
         }
       } catch (e) {
@@ -33,8 +48,10 @@ const RestaurantMenu =() => {
     return <Shimmer />;
   }
 
-  const { name, cuisines, costForTwoMessage } = resInfo[5]?.info || {};
-console.log("ye lo json",resInfo);
+  console.log("Restaurant menu object", resInfo);
+  const { name, cuisines, costForTwoMessage  } = resInfo[2]?.info || {};
+
+
   return (
     <div className='menu'>
       <h1>{name}</h1>

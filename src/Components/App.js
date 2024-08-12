@@ -49,7 +49,7 @@ children : [
 
 },
 {
-  path: "/restaurants/:resID",
+  path: "/restaurants/:resiD",
 
   element:<RestaurantMenu/>,
   

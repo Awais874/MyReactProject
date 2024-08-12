@@ -19,20 +19,22 @@ const RestaurantCard = (Props) => {
   // } else {
   //   console.error("ID not found in resData:", resData);
   // }
-  console.log("resData is hereee", Props.resData.info );
-const {name,cuisines,cloudinaryImageId} = Props.resData.info;
+console.log("Ye hai latest",Props);
+const {name,cuisines,cloudinaryImageId} = Props?.resData?.info;
 
 return(
-  
-<div className="res-card" style={styleCard}>
-
+ 
+ <div className="res-card" style={styleCard}>
+   
 <img className="res-logo" alt="food-logo" src={CDN_URL+cloudinaryImageId}/> 
 <h3> {name} </h3>
 <h4> {cuisines}</h4>
 <h4> Stars</h4>
 <h4>32 Minutes</h4>
+
 </div>
-// {avgRating}
+
+
     )
 };
 
