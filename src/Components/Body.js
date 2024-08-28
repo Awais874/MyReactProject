@@ -3,13 +3,15 @@ import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 
+
 let CardsFile = [];
 
 const Body = () => {
   const [ListOfRestaurants, setListOfRestaurant] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+  
   const [SearchText, setSearchText] = useState("");
-  console.log("abccc", filteredRestaurant);
+ 
 
   useEffect(() => {
     fetchData();
