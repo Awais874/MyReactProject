@@ -3,18 +3,17 @@ import { LOGO_URL } from "../utils/constant";
 import { useState } from "react";
 import useOnlineStatus from "../utils/useOnlineStatus";
 
-
 const Header = () => {
   const [btnNameReact, setBtnNameReact] = useState("Login");
-  const onlineStatus =useOnlineStatus();
+  const onlineStatus = useOnlineStatus();
   return (
-    <div className="header">
+    <div className=" flex justify-between">
       <div className="logo-container">
-        <img className="logo" src={LOGO_URL} />
+        <img className="w-56" src={LOGO_URL} />
       </div>
-      <div className="nav-items">
-        <ul>
-            <li> OnlineStatus: {onlineStatus ? "✅" : "❌" } </li>
+      <div className="flex">
+        <ul className="flex justify-between" >
+          <li> OnlineStatus: {onlineStatus ? "✅" : "❌"} </li>
           <li>
             <Link to="/"> Home </Link>{" "}
           </li>
@@ -23,6 +22,9 @@ const Header = () => {
           </li>
           <li>
             <Link to="/contact">Contact us</Link>
+          </li>
+          <li>
+            <Link to="/grocery">Grocery</Link>
           </li>
           <li>Cart</li>
           <button

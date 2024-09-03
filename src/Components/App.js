@@ -8,7 +8,12 @@ import About from "./About";
 import Contact from "./Contact";
 import Error from "./Error";
 import RestaurantMenu  from "./RestaurantMenu";
+// import Grocery from "./Grocery";
+import { lazy,Suspense } from "react";
+import "../index.css"; 
 
+
+const Grocery = lazy(() => import("./Grocery"));
 
 const Applayout=() => {
 
@@ -60,7 +65,16 @@ children : [
 
   element:<Contact/>,
 
-}],
+},
+
+{
+  path: "/Grocery",
+
+  element:<Suspense fallback={<h1>Just a second</h1>}><Grocery/></Suspense>,
+
+}
+
+],
 errorElement : <Error/>
 }
 
