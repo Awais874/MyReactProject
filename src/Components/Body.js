@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import  RestaurantCard,{ withPromotedLabel} from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -12,6 +12,9 @@ const Body = () => {
   
   const [SearchText, setSearchText] = useState("");
  
+const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
+
+
 
   useEffect(() => {
     fetchData();
@@ -64,7 +67,7 @@ const Body = () => {
               setSearchText(e.target.value);
             }}
           />
-          <button className="m-4 bg-green-100 px-4 py-2 rounded-lg"
+          <button className="m-4 bg-green-100 px-4 py-1 rounded-lg"
             onClick={() => {
               const filteredRestaurant = ListOfRestaurants.filter((res) => {
                 return res.info.name
@@ -82,7 +85,7 @@ const Body = () => {
         </div>
         <div className="search m-4 p-4 flex items-center">
         <button
-          className="px-3 py-1 bg-gray-100 rounded-lg" 
+          className="px-4 py-1 bg-gray-100 rounded-lg" 
           onClick={() => {
             const filteredlist = ListOfRestaurants?.filter(
               (res) => res?.info?.avgRating > 4
@@ -99,15 +102,25 @@ const Body = () => {
 
       <div className="flex flex-wrap">
         {console.log("aaa", filteredRestaurant)}
+        
         {filteredRestaurant.map((restaurants) => (
+          
+          
           <Link
-            key={restaurants.info?.id}
+            key={restaurants?.info?.id}
             to={"/restaurants/" + restaurants.info?.id}
           >
+          { restaurants.info.promoted? (<RestaurantCardPromoted resData={restaurants}/>) :(
+             <RestaurantCard resData = {restaurants} />)
+            }
            
-            <RestaurantCard key={restaurants?.info?.id} resData={restaurants} />
-          
             </Link>
+
+
+
+
+
+
 
         ))}
       </div>

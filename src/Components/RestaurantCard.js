@@ -9,8 +9,8 @@ const RestaurantCard = (Props) => {
   // } else {
   //   console.error("ID not found in resData:", resData);
   // }
-  console.log("Ye hai latest", Props);
-  const { name, cuisines, cloudinaryImageId } = Props?.resData?.info;
+  console.log("Ye hai latest", Props?.resData?.info);
+  const {name,cuisines,cloudinaryImageId } = Props?.resData?.info;
 
   return (
     <div className="m-4 p-4 w-[200px] hover:bg-gray-300 bg-gray-100">
@@ -28,3 +28,22 @@ const RestaurantCard = (Props) => {
 };
 
 export default RestaurantCard;
+
+export const withPromotedLabel = (RestaurantCard) =>
+  {
+return(props) => {
+return(
+  <div>
+<label className="bg-black m-2 p-2 text-white rounded-lg" >
+  Promoted
+</label>
+<RestaurantCard {...props}/>
+  </div>
+);
+
+};
+
+  };
+
+
+
