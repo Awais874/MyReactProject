@@ -83,7 +83,7 @@ const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
             Search
           </button>
         </div>
-        <div className="search m-4 p-4 flex items-center">
+        <div className="search m-0 p-4 flex items-center">
         <button
           className="px-4 py-1 bg-gray-100 rounded-lg" 
           onClick={() => {
